@@ -15,12 +15,13 @@ pipeline {
           sh './sampleWebApp/gradlew test -p sampleWebApp/'
         }
       }
-      stage('Sonarqube..'){
+      stage('Sonarqube..') {
         steps {
-        echo 'Sonarqube'
-        sh './sampleWebApp/gradlew sonarqube -p sampleWebApp/'
+          echo 'Sonarqube'
+          sh './sampleWebApp/gradlew sonarqube -p sampleWebApp/'
+        }
       }
-        
+
       }
   post {
     always {
@@ -28,7 +29,6 @@ pipeline {
         mail to: 'Cristian.lujan@fundacion-jala.org',
           subject: "Test Pipeline: ${currentBuild.fullDisplayName}",
           body: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
-        }
-
+    }
   }
 }
